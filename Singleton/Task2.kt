@@ -3,37 +3,54 @@ class Counter {
 
     companion object {
         var staticCount: Int = 0
-
-        fun get_staticCount(): Int {
-            return staticCount
-        }
     }
 }
 
 class Helper1 {
-    var counter1 = Counter()
+    val counter1 = Counter()
+
+    fun incrementCount() {
+        counter1.count++
+        print("Counter from Helper1: ")
+        println(counter1.count)
+    }
 
     fun incrementStaticCount() {
-        var c = Counter.get_staticCount()++
+        Counter.staticCount++
         print("Static Counter from Helper1: ")
-        println(c)
+        println(Counter.staticCount)
     }
 }
 
 class Helper2 {
-    var counter2 = Counter()
+    val counter2 = Counter()
+
+    fun incrementCount() {
+        counter2.count++
+        print("Counter from Helper2: ")
+        println(counter2.count)
+    }
 
     fun incrementStaticCount() {
-         var c = Counter.get_staticCount()++
+        Counter.staticCount++
         print("Static Counter from Helper2: ")
-        println(c)
+        println(Counter.staticCount)
     }
 }
 
 fun main() {
     var h1 = Helper1()
-    h1.incrementStaticCount()
-
     var h2 = Helper2()
+
+    h1.incrementStaticCount()
     h2.incrementStaticCount()
+    h1.incrementStaticCount()
+    h2.incrementStaticCount()
+
+    println("--------------------------------")
+
+    h1.incrementCount()
+    h2.incrementCount()
+    h1.incrementCount()
+    h2.incrementCount()
 }
